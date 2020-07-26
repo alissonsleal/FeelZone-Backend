@@ -1,8 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes");
+const cors = require("cors");
 
 const app = express();
+app.use(cors());
 
 mongoose.connect(
   "mongodb+srv://ownerUser:QsKwuF951BGs3pbd@defaultreactnativeapp.dcfww.mongodb.net/msgApp?retryWrites=true&w=majority",
