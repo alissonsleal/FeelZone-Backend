@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes");
@@ -6,13 +8,10 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 
-mongoose.connect(
-  "mongodb+srv://ownerUser:QsKwuF951BGs3pbd@defaultreactnativeapp.dcfww.mongodb.net/msgApp?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 //req.query = access query params(to filter)(POST)
 //req.params. = access route params(to edit/delete)(PUT)
