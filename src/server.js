@@ -3,10 +3,10 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes");
-//const cors = require("cors");
+const cors = require("cors");
 
 const app = express();
-//app.use(cors());
+app.use(cors());
 
 mongoose
   .connect(process.env.MONGO_URL, {
@@ -14,7 +14,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then((result) => {
-    app.listen(3333);
+    app.listen(process.env.PORT || 3333);
     console.log("listening on port 3333");
   })
   .catch((err) => console.log(err));
