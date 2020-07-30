@@ -4,7 +4,10 @@ const Text = require("../models/Text");
 module.exports = {
   async index(req, res) {
     const { page = 1 } = req.query;
-    const texts = await Text.paginate({}, { page, limit: 1000 });
+    const texts = await Text.paginate(
+      {},
+      { page, limit: 1000, sort: { createdAt: -1 } }
+    );
 
     return res.json(texts);
   },
@@ -17,16 +20,16 @@ module.exports = {
 
   async store(req, res) {
     const { title, body, rating } = req.body;
-    const { user_id } = req.headers;
+    //const { user_id } = req.headers;
 
-    const user = await User.findById(user_id);
+    //const user = await User.findById(user_id);
 
-    if (!user) {
-      return res.status(400).json({ error: "User doesn't exist" });
-    }
+    //if (!user) {
+    //const  return res.status(400).json({ error: "User doesn't exist" });
+    //}
 
     const text = await Text.create({
-      user: user_id,
+      //  user: user_id,
       title,
       body,
       rating,
