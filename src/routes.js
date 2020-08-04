@@ -10,5 +10,6 @@ routes.get("/texts", TextController.index);
 routes.get("/texts/:id", TextController.show);
 routes.put("/texts/:id", TextController.updateOne);
 routes.delete("/texts/:id", TextController.destroy);
+routes.delete("/deleteAllData", TextController.deleteAllData);
 
 module.exports = routes;

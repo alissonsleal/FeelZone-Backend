@@ -20,13 +20,16 @@ module.exports = {
 
   async store(req, res) {
     const { title, body, rating } = req.body;
-    //const { user_id } = req.headers;
 
-    //const user = await User.findById(user_id);
+    /* Just in case we eventually have an user api
+    const { user_id } = req.headers;
 
-    //if (!user) {
-    //const  return res.status(400).json({ error: "User doesn't exist" });
-    //}
+    const user = await User.findById(user_id);
+
+    if (!user) {
+    const  return res.status(400).json({ error: "User doesn't exist" });
+    }
+    */
 
     const text = await Text.create({
       //  user: user_id,
@@ -49,10 +52,29 @@ module.exports = {
   },
 
   async destroy(req, res) {
-    const text = await Text.findByIdAndRemove(req.params.id, {
+    await Text.findByIdAndRemove(req.params.id, {
       useFindAndModify: false,
     });
 
     return res.send();
+  },
+
+  async deleteAllData(req, res) {
+    const { user_id } = req.headers;
+
+    const user = await User.findById(user_id);
+
+    if (user == "5f1e5335052211242c02f6bc") {
+      try {
+        return await Text.deleteMany();
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    try {
+      await Text.deleteMany();
+    } catch (err) {
+      console.log(err);
+    }
   },
 };
