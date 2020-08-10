@@ -13,7 +13,9 @@ const TextSchema = new mongoose.Schema(
   */
     title: { type: String, required: true },
     body: { type: String, required: true },
+    /* ******* If we need a rating for the day or something *******
     rating: { type: Number, required: true },
+    */
   },
   { timestamps: true }
 );
