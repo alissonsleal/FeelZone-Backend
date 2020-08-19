@@ -70,6 +70,7 @@ module.exports = {
     // using cron-job.org with the user_id header to delete everything everyday at midnight GMT-3
     if (user == deletePass) {
       try {
+        console.log("Deleted All Messages");
         return await Text.deleteMany();
       } catch (err) {
         console.log(err);
