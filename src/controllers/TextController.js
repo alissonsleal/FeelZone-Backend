@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const User = require("../models/User");
 const Text = require("../models/Text");
 
@@ -35,7 +37,7 @@ module.exports = {
       //  user: user_id,
       title,
       body,
-      rating,
+      //rating,
     });
     console.log(req.body);
 
@@ -63,8 +65,8 @@ module.exports = {
     const { user_id } = req.headers;
 
     const user = await User.findById(user_id);
-
-    if (user == "5f1e5335052211242c02f6bc") {
+    // using cron-job.org with the user_id header to delete everything everyday at midnight GMT-3
+    if (user == process.env.DELETEPASSWORD) {
       try {
         return await Text.deleteMany();
       } catch (err) {
