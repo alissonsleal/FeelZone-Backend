@@ -43,47 +43,61 @@ Go into the folder where you downloaded and run:
 
 `npm install`
 
-To open the expo server, just run:
+Rename and add the needed information in your .env file
 
-`npm start`
+`.env copy` -> `.env`
 
-## How To Use the App
+To open the local server, just run:
 
+`npm start dev`
+
+## API
+
+You can go to localhost:3333/texts and see all the FeelZone texts
+
+Example:
+
+```json
+{
+  "docs": [
+    {
+      "_id": "RandomIDNumber",
+      "title": "Title Goes Here",
+      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor sit amet.",
+      "createdAt": "2020-09-03T18:11:03.937Z",
+      "updatedAt": "2020-09-03T18:11:03.937Z",
+      "__v": 0
+    }
+  ],
+  "totalDocs": 1,
+  "limit": 1000,
+  "totalPages": 1,
+  "page": 1,
+  "pagingCounter": 1,
+  "hasPrevPage": false,
+  "hasNextPage": false,
+  "prevPage": null,
+  "nextPage": null
+}
+```
+
+#### Visit Single Document
+
+You can visit `localhost:3333/texts/_id` to see the single request.
+(Don't forget to change the `_id` in the url with the `_id` value)
+
+#### Update Single Document
+
+You can update a single text in the database using the `PUT` method in `/texts/:id`
+
+#### Delete Single Document
+
+You can delete a single text in the database using the `DELETE` method in `/texts/:id`
+
+#### Delete All Data
+
+You can delete all of the data inside the database. All you need to do is a single request to /deleteAllData. And you're going to need to add an `user_id` in the header of the request, this `user_id` needs to be the same as the `DELETEPASSWORD` in the `.env` file
 The first thing you'll see is the loading page:
-
-<p align="center">
-<img src="./assets/Screenshots/LoadingPage.png" alt="Loading Page" width="256px">
-</p>
-
-You can just lurk and read other people's stories from the homepage. If you want to share your story, just click the green button on the bottom right corner of the app.
-
-<p align="center">
-<img src="./assets/Screenshots/HomePage.png" alt="Home Page" width="256px">
-</p>
-
-After this, you just have to add a title and a description and then just click the submit button.
-
-<p align="center">
-<img src="./assets/Screenshots/CreateReviewPage_Written.png" alt="Create Review Page" width="256px">
-</p>
-
-After this, you'll be able to see your story in the homepage, if you click it, you'll be able to see the details.
-
-<p align="center">
-<img src="./assets/Screenshots/DetailsPage.png" alt="Details Page" width="256px">
-</p>
-
-If you swipe left or click on the hamburger menu button, you'll be able to see the about page:
-
-<p align="center">
-<img src="./assets/Screenshots/HamburgerMenu.png" alt="Hamburger Menu" width="256px">
-</p>
-
-If you open About, you'll be redirected to the about page:
-
-<p align="center">
-<img src="./assets/Screenshots/AboutPage.png" alt="About Page" width="256px">
-</p>
 
 [Back To The Top](#Description)
 
