@@ -69,7 +69,6 @@ module.exports = {
     if (user == process.env.DELETEPASSWORD) {
       try {
         return await Text.deleteMany();
-        console.log("All files deleted successfully");
       } catch (err) {
         console.log(err);
       }
