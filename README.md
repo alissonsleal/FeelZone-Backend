@@ -53,7 +53,7 @@ To open the local server, just run:
 
 ## API
 
-You can go to localhost:3333/texts and see all the FeelZone texts
+You can go to `localhost:3333/texts` and see all the FeelZone texts
 
 Example:
 
