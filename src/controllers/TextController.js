@@ -3,8 +3,6 @@ require("dotenv").config();
 const User = require("../models/User");
 const Text = require("../models/Text");
 
-const deletePass = process.env.DELETEPASSWORD;
-
 module.exports = {
   async index(req, res) {
     const { page = 1 } = req.query;
@@ -23,7 +21,7 @@ module.exports = {
   },
 
   async store(req, res) {
-    const { title, body /*, rating*/ } = req.body;
+    const { title, body, rating } = req.body;
 
     /* Just in case we eventually have an user api
     const { user_id } = req.headers;
@@ -63,15 +61,15 @@ module.exports = {
     return res.send();
   },
 
-  async deleteAllData(req, res, deletePass) {
+  async deleteAllData(req, res) {
     const { user_id } = req.headers;
 
     const user = await User.findById(user_id);
-    // using cron-job.org with the user_id header to delete everything everyday at midnight GMT-3
-    if (user == deletePass) {
+
+    if (user == process.env.DELETEPASSWORD) {
       try {
-        console.log("Deleted All Messages");
         return await Text.deleteMany();
+        console.log("All files deleted successfully");
       } catch (err) {
         console.log(err);
       }
